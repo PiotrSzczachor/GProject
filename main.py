@@ -9,7 +9,6 @@ reserved = {
     'logiczna': 'BOOL',
     'zmiennoprzecinkowa': 'FLOAT',
     'jezeli': 'IF',
-    'inaczej': 'ELSE',
     'prawda': 'TRUE',
     'falsz': 'FALSE',
     'wyswietl': 'PRINT',
@@ -145,20 +144,12 @@ def p_for_loop(p):
 def p_for_loop_statement(p):
     '''
     for_loop_statement : FOR LEFT_BR INT VAR EQUAL INT_NUMBER SEMICOLON VAR LESS INT_NUMBER SEMICOLON VAR EQUAL VAR PLUS number RIGHT_BR
-    | FOR LEFT_BR INT VAR EQUAL INT_NUMBER SEMICOLON VAR LESS INT_NUMBER SEMICOLON VAR EQUAL VAR MINUS number RIGHT_BR
     '''
 
 
 def p_if_statement(p):
     '''
     if_statement : IF LEFT_BR comparisons RIGHT_BR LEFT_BR_CURLY instructions RIGHT_BR_CURLY
-                 | IF LEFT_BR comparisons RIGHT_BR LEFT_BR_CURLY instructions RIGHT_BR_CURLY  else_statement
-    '''
-
-
-def p_else_statement(p):
-    '''
-    else_statement : ELSE LEFT_BR_CURLY instructions RIGHT_BR_CURLY
     '''
 
 
