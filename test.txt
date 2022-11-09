@@ -1,15 +1,4 @@
 program
 {
- calkowita x = 0;
- jezeli(x<10)
- {
-   wyswietl(x);
- }
- zmiennoprzecinkowa zmienna;
- logiczna zmiennaLogiczna = prawda;
- logiczna zmiennaLogiczna2 = falsz;
- dla(calkowita x=1; x<2; x=x+1)
- {
-   wprowadz(zmienna);
- }
+wyswietl(i);
 }

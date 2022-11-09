@@ -1,10 +1,10 @@
 class IfStatement:
-    instructions = []
 
     def __init__(self, value1, comparator, value2):
         self.value1 = value1
         self.value2 = value2
         self.comparator = comparator
+        self.instructions = []
 
     def __str__(self):
         instructions = self.stringify_instructions()

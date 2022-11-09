@@ -1,11 +1,11 @@
 class ForLoop:
-    instructions = []
 
     def __init__(self, iterator_name, start, end, increment_value):
         self.iterator_name = iterator_name
         self.start = start
         self.end = end
         self.increment_value = increment_value
+        self.instructions = []
 
     def __str__(self):
         instructions = self.stringify_instructions()
