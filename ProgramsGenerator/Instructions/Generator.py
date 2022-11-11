@@ -13,7 +13,7 @@ from Empty import Empty
 
 sys.setrecursionlimit(10000)
 
-def createProgram(program, depth, i):
+def generateRandomProgram(program, depth, i):
     instructions = ["for", "if", "assignment", "input", "print", "declaration", "empty"]
     variables_values = ["var", "val"]
     comparators = ["<", "<=", ">", ">=", "==", "!="]
@@ -34,7 +34,7 @@ def createProgram(program, depth, i):
             if is_nested and i < depth:
                 i += 1
                 if i != depth:
-                    loop = createProgram(loop, depth, i)
+                    loop = generateRandomProgram(loop, depth, i)
             program.add_instruction(loop)
         if instruction == "if":
             value = variables_values[random.randint(0, len(variables_values)-1)]
@@ -80,6 +80,21 @@ def createProgram(program, depth, i):
     return program
 
 
-print(createProgram(Program(), 3, 0))
+def programsCrossing(P1, P2):
+    firstProgramIndex = random.randint(0, len(P1.instructions))
+    secondProgramIndex = random.randint(0, len(P2.instructions))
+    firstProgramPart = P1.instructions[0:firstProgramIndex]
+    secondProgramPart = P2.instructions[secondProgramIndex:len(P2.instructions)]
+    resultProgram = Program()
+    resultProgram.instructions = firstProgramPart + secondProgramPart
+    return resultProgram
+
+
+program1 = generateRandomProgram(Program(), 1, 0)
+program2 = generateRandomProgram(Program(), 1, 0)
+print(program1)
+print(program2)
+crossed = programsCrossing(program1, program2)
+print(crossed)
 
 
