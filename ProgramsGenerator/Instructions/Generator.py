@@ -30,7 +30,7 @@ def generateRandomProgram(program, depth, i = 0):
             increment = random.randint(0, 1000)
             iterator_name = random.choice(string.ascii_letters)
             loop = ForLoop(iterator_name, start, end, increment)
-            is_nested = nested[random.randint(0, len(variables_values)-1)]
+            is_nested = nested[random.randint(0, len(nested)-1)]
             if is_nested and i < depth:
                 i += 1
                 if i != depth:
@@ -86,22 +86,58 @@ def generateRandomProgram(program, depth, i = 0):
 
 
 def programs_crossing(P1, P2):
-    firstProgramIndex = random.randint(0, len(P1.instructions)-1)
-    secondProgramIndex = random.randint(0, len(P2.instructions)-1)
-    firstProgramPart = P1.instructions[0:firstProgramIndex]
-    secondProgramPart = P2.instructions[secondProgramIndex:len(P2.instructions)-1]
-    resultProgram = Program()
-    resultProgram.instructions = firstProgramPart + secondProgramPart
-    return resultProgram
+    pass
 
 
-def program_mutation(P, depth):
+def get_program_element(element):
+    nested = [True, False]
+    if isinstance(element, Program):
+        element = element.instructions[random.randint(0, len(element.instructions)-1)]
+    if isinstance(element, ForLoop) or isinstance(element, IfStatement):
+        if len(element.instructions) != 0:
+            is_nested = nested[random.randint(0, 1)]
+        else:
+            is_nested = False
+        if is_nested:
+            element = get_program_element(element)
+        else:
+            if len(element.instructions) != 0:
+                element = element.instructions[random.randint(0, len(element.instructions)-1)]
+    return element
+
+
+def program_mutation(P, max_depth):
     index = random.randint(0, len(P.instructions)-1)
+    nested = [True, False]
     element = P.instructions[index]
+    tmp = None
+    if isinstance(element, Assignment):
+        is_nested = nested[random.randint(0, len(nested) - 1)]
+        if is_nested:
+            tmp = generateRandomProgram(Program(), max_depth)
+        else:
+            new_value = random.randint(-1000, 1000)
+            element.value = new_value
+    if isinstance(element, Empty):
+        tmp = generateRandomProgram(Program(), max_depth)
+    if isinstance(element, Input):
+        is_nested = nested[random.randint(0, len(nested) - 1)]
+        if is_nested:
+            tmp = generateRandomProgram(Program(), max_depth)
+        else:
+            element.variable = random.choice(string.ascii_letters)
+    if isinstance(element, Print):
+        is_nested = nested[random.randint(0, len(nested) - 1)]
+        if is_nested:
+            tmp = generateRandomProgram(Program(), max_depth)
+    if isinstance(element, VarDeclaration):
+        tmp = generateRandomProgram(Program(), max_depth)
     element.instructions.clear()
-    element = generateRandomProgram(element, depth, 0)
+    element = generateRandomProgram(element, max_depth, 0)
     return P
 
 
 P = generateRandomProgram(Program(), 3)
 print(P)
+print("\n\n\n\n")
+print(get_program_element(P))
