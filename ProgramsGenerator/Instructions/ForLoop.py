@@ -9,7 +9,7 @@ class ForLoop:
 
     def __str__(self):
         instructions = self.stringify_instructions()
-        return "dla(int " + str(self.iterator_name) + " = " + str(self.start) + "; " + str(self.iterator_name) + " < " + str(self.end) + "; " + str(self.iterator_name) + " = " + str(self.iterator_name) + " + " + str(self.increment_value) + ")" + "\n{\n" + instructions + "}\n"
+        return "dla(calkowita " + str(self.iterator_name) + " = " + str(self.start) + "; " + str(self.iterator_name) + " < " + str(self.end) + "; " + str(self.iterator_name) + " = " + str(self.iterator_name) + " + " + str(self.increment_value) + ")" + "\n{\n" + instructions + "}\n"
 
     def add_instruction(self, instruction):
         self.instructions.append(instruction)

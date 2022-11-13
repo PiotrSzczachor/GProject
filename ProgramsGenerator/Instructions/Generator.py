@@ -13,7 +13,7 @@ from Empty import Empty
 
 sys.setrecursionlimit(10000)
 
-def generateRandomProgram(program, depth, i):
+def generateRandomProgram(program, depth, i = 0):
     instructions = ["for", "if", "assignment", "input", "print", "declaration", "empty"]
     variables_values = ["var", "val"]
     comparators = ["<", "<=", ">", ">=", "==", "!="]
@@ -39,16 +39,21 @@ def generateRandomProgram(program, depth, i):
         if instruction == "if":
             value = variables_values[random.randint(0, len(variables_values)-1)]
             comparator = comparators[random.randint(0, len(comparators)-1)]
+            if_statement = None
             if value == "val":
                 val1 = random.uniform(0, 1000)
                 val2 = random.uniform(0, 1000)
                 if_statement = IfStatement(val1, comparator, val2)
-                program.add_instruction(if_statement)
             else:
                 var1 = random.choice(string.ascii_letters)
                 var2 = random.choice(string.ascii_letters)
                 if_statement = IfStatement(var1, comparator, var2)
-                program.add_instruction(if_statement)
+            is_nested = nested[random.randint(0, len(variables_values)-1)]
+            if is_nested and i < depth:
+                i += 1
+                if i != depth:
+                    if_statement = generateRandomProgram(if_statement, depth, i)
+            program.add_instruction(if_statement)
         if instruction == "assignment":
             var = random.choice(string.ascii_letters)
             val = random.uniform(0, 1000)
@@ -80,21 +85,23 @@ def generateRandomProgram(program, depth, i):
     return program
 
 
-def programsCrossing(P1, P2):
-    firstProgramIndex = random.randint(0, len(P1.instructions))
-    secondProgramIndex = random.randint(0, len(P2.instructions))
+def programs_crossing(P1, P2):
+    firstProgramIndex = random.randint(0, len(P1.instructions)-1)
+    secondProgramIndex = random.randint(0, len(P2.instructions)-1)
     firstProgramPart = P1.instructions[0:firstProgramIndex]
-    secondProgramPart = P2.instructions[secondProgramIndex:len(P2.instructions)]
+    secondProgramPart = P2.instructions[secondProgramIndex:len(P2.instructions)-1]
     resultProgram = Program()
     resultProgram.instructions = firstProgramPart + secondProgramPart
     return resultProgram
 
 
-program1 = generateRandomProgram(Program(), 1, 0)
-program2 = generateRandomProgram(Program(), 1, 0)
-print(program1)
-print(program2)
-crossed = programsCrossing(program1, program2)
-print(crossed)
+def program_mutation(P, depth):
+    index = random.randint(0, len(P.instructions)-1)
+    element = P.instructions[index]
+    element.instructions.clear()
+    element = generateRandomProgram(element, depth, 0)
+    return P
 
 
+P = generateRandomProgram(Program(), 3)
+print(P)
