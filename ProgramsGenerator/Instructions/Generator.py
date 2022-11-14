@@ -29,7 +29,7 @@ def generateRandomProgram(program, depth, i = 0):
             end = random.randint(start+1, start+10000)
             increment = random.randint(0, 1000)
             iterator_name = random.choice(string.ascii_letters)
-            loop = ForLoop(iterator_name, start, end, increment)
+            loop = ForLoop(iterator_name, start, end, increment, program)
             is_nested = nested[random.randint(0, len(nested)-1)]
             if is_nested and i < depth:
                 i += 1
@@ -43,11 +43,11 @@ def generateRandomProgram(program, depth, i = 0):
             if value == "val":
                 val1 = random.uniform(0, 1000)
                 val2 = random.uniform(0, 1000)
-                if_statement = IfStatement(val1, comparator, val2)
+                if_statement = IfStatement(val1, comparator, val2, program)
             else:
                 var1 = random.choice(string.ascii_letters)
                 var2 = random.choice(string.ascii_letters)
-                if_statement = IfStatement(var1, comparator, var2)
+                if_statement = IfStatement(var1, comparator, var2, program)
             is_nested = nested[random.randint(0, len(variables_values)-1)]
             if is_nested and i < depth:
                 i += 1
@@ -57,18 +57,18 @@ def generateRandomProgram(program, depth, i = 0):
         if instruction == "assignment":
             var = random.choice(string.ascii_letters)
             val = random.uniform(0, 1000)
-            program.add_instruction(Assignment(var, val))
+            program.add_instruction(Assignment(var, val, program))
         if instruction == "input":
             var = random.choice(string.ascii_letters)
-            program.add_instruction(Input(var))
+            program.add_instruction(Input(var, program))
         if instruction == "print":
             value = variables_values[random.randint(0, len(variables_values)-1)]
             if value == "val":
                 val = random.uniform(0, 1000)
-                program.add_instruction(Print(val))
+                program.add_instruction(Print(val, program))
             else:
                 var = random.choice(string.ascii_letters)
-                program.add_instruction(Print(var))
+                program.add_instruction(Print(var, program))
         if instruction == "declaration":
             type_ = types[random.randint(0, len(types)-1)]
             var = random.choice(string.ascii_letters)
@@ -79,14 +79,19 @@ def generateRandomProgram(program, depth, i = 0):
                 val = random.randint(0, 1000)
             if type_ == "zmiennoprzecinkowa":
                 val = random.uniform(0, 1000)
-            program.add_instruction(VarDeclaration(type_, var, val))
+            program.add_instruction(VarDeclaration(type_, var, val, program))
         if instruction == "empty":
-            program.add_instruction(Empty())
+            program.add_instruction(Empty(program))
     return program
 
 
 def programs_crossing(P1, P2):
-    pass
+    P1_element = get_program_element(P1)
+    P2_element = get_program_element(P2)
+    P1_element_index = P1_element.parent.instructions.index(P1_element)
+    P2_element_index = P2_element.parent.instructions.index(P2_element)
+    P1_element.parent.instructions[P1_element_index] = P2_element
+    P2_element.parent.instructions[P2_element_index] = P1_element
 
 
 def get_program_element(element):
@@ -137,7 +142,11 @@ def program_mutation(P, max_depth):
     return P
 
 
-P = generateRandomProgram(Program(), 3)
-print(P)
-print("\n\n\n\n")
-print(get_program_element(P))
+P1 = generateRandomProgram(Program(), 3)
+P2 = generateRandomProgram(Program(), 3)
+
+print(P1)
+print("\n\n")
+programs_crossing(P1, P2)
+print("\n\n")
+print(P1)
