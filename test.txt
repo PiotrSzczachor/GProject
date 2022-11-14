@@ -1,53 +1,173 @@
 program
 {
-F = 592.4754136843848;
-wyswietl(J);
-dla(calkowita N = 1276; N < 5238; N = N + 56)
+wprowadz(P);
+jezeli(n < n)
+{
+dla(calkowita c = 4028; c < 8889; c = c + 869)
+{
+lancuch W = None;
+calkowita W = 872;
+wprowadz(t);
+dla(calkowita m = 4215; m < 6538; m = m + 458)
 {
 }
-wprowadz(A);
-jezeli(r >= O)
+}
+wprowadz(q);
+wyswietl(410.9152630211558);
+dla(calkowita v = 9602; v < 18980; v = v + 505)
 {
 }
-calkowita m = 508;
-wyswietl(822.0696781947285);
-jezeli(490.70785814388154 == 615.0100573149049)
+jezeli(190.68077190744393 > 341.3308699465578)
 {
 }
-dla(calkowita r = 7667; r < 16792; r = r + 111)
+wprowadz(U);
+wprowadz(d);
+calkowita Q = 625;
+wyswietl(813.496700487298);
+dla(calkowita T = 7833; T < 10871; T = T + 616)
+{
+wprowadz(x);
+wyswietl(432.10199958016824);
+k = 367.8495356734266;
+wprowadz(W);
+jezeli(l >= F)
 {
 }
-wprowadz(E);
-wprowadz(E);
-wprowadz(p);
-B = 251.66473673411505;
-Y = 700.54025501496;
-jezeli(651.1575070320634 > 410.6005975346827)
+wprowadz(H);
+calkowita w = 134;
+lancuch k = None;
+p = 432.02104306750664;
+wyswietl(837.7910166573818);
+wyswietl(H);
+zmiennoprzecinkowa H = 712.1128613781192;
+wyswietl(m);
+wyswietl(R);
+}
+k = 596.4607661616824;
+lancuch S = None;
+G = 785.4548076606005;
+dla(calkowita u = 3721; u < 5614; u = u + 364)
 {
 }
-jezeli(135.84841938738268 <= 679.1170672121017)
+zmiennoprzecinkowa V = 541.9999845896833;
+wyswietl(141.27902783143276);
+dla(calkowita Z = 9681; Z < 18389; Z = Z + 640)
+{
+wyswietl(n);
+dla(calkowita L = 6444; L < 11163; L = L + 753)
+{
+zmiennoprzecinkowa M = 105.22394184023753;
+wyswietl(u);
+wyswietl(m);
+lancuch F = None;
+wyswietl(B);
+jezeli(q > n)
 {
 }
-wprowadz(p);
-wyswietl(615.3014360115856);
-dla(calkowita p = 6574; p < 14988; p = p + 828)
+jezeli(R > A)
+{
+S = 355.4057935689019;
+wprowadz(j);
+dla(calkowita U = 5199; U < 10561; U = U + 945)
 {
 }
-jezeli(380.04889619406634 != 895.3222053140954)
+j = 21.320988078363467;
+N = 118.17703617332798;
+wprowadz(q);
+lancuch Q = None;
+wyswietl(U);
+A = 328.1180168260133;
+wprowadz(V);
+wprowadz(l);
+wprowadz(v);
+lancuch m = None;
+}
+zmiennoprzecinkowa F = 559.7196500993081;
+wyswietl(699.8251767869452);
+E = 454.9077243329679;
+jezeli(e <= N)
+{
+v = 402.5714875620994;
+lancuch m = None;
+dla(calkowita g = 7288; g < 11981; g = g + 479)
+{
+wprowadz(f);
+wyswietl(h);
+h = 933.5736742871932;
+calkowita K = 45;
+jezeli(e <= H)
 {
 }
-jezeli(135.84841938738268 <= 679.1170672121017)
+calkowita r = 819;
+wprowadz(N);
+wyswietl(540.193652961812);
+wyswietl(965.4433955229267);
+wprowadz(K);
+wyswietl(691.3659174057815);
+wyswietl(818.2980872688994);
+}
+dla(calkowita U = 5687; U < 12949; U = U + 957)
+{
+calkowita o = 686;
+calkowita S = 436;
+}
+f = 187.8513401234486;
+C = 466.1089052533366;
+wyswietl(622.6827062879433);
+lancuch u = None;
+zmiennoprzecinkowa x = 307.1987663793709;
+J = 702.1019361801508;
+G = 840.6459315723648;
+wprowadz(d);
+wprowadz(l);
+I = 307.8987876703827;
+h = 419.7995110552797;
+dla(calkowita x = 3044; x < 12930; x = x + 74)
+{
+wyswietl(T);
+}
+h = 598.0087295272533;
+dla(calkowita U = 1991; U < 7229; U = U + 269)
+{
+jezeli(A != s)
+{
+wprowadz(J);
+t = 996.711242737497;
+A = 25.18849157842684;
+wyswietl(682.1429740733603);
+wyswietl(X);
+dla(calkowita T = 1810; T < 3880; T = T + 592)
+{
+wprowadz(l);
+wyswietl(N);
+wprowadz(m);
+wprowadz(L);
+wyswietl(350.5435843518735);
+calkowita v = 744;
+wyswietl(K);
+wyswietl(939.501563697218);
+wyswietl(L);
+f = 305.3178537864076;
+wprowadz(N);
+wprowadz(F);
+jezeli(v >= l)
 {
 }
-wprowadz(p);
-wyswietl(615.3014360115856);
-dla(calkowita p = 6574; p < 14988; p = p + 828)
+s = 205.06795667234067;
+L = 324.08635256798624;
+g = 611.3560930127206;
+calkowita j = 158;
+R = 712.7019978700133;
+lancuch g = None;
+I = 155.6581499695384;
+dla(calkowita V = 8697; V < 17978; V = V + 950)
 {
 }
-jezeli(380.04889619406634 != 895.3222053140954)
-{
 }
-dla(calkowita Z = 5646; Z < 12633; Z = Z + 928)
-{
+}
+}
+}
+}
+}
 }
 }
