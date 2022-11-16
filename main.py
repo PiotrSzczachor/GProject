@@ -103,17 +103,12 @@ def p_start_symbol(p):
     '''
     start_symbol : program
     '''
-    p[0] = p[1]
 
 def p_program(p):
     '''
     program : PROGRAM LEFT_BR_CURLY instructions RIGHT_BR_CURLY
             | empty
     '''
-    if len(p) == 5:
-        p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
-    else:
-        p[0] = p[1]
 
 
 def p_instructions(p):
@@ -280,7 +275,6 @@ def p_empty(p):
 
 f = open("test.txt", "r")
 code = f.read()
-print(code)
 
 parser = yacc.yacc()
-print(parser.parse(code))
+parser.parse(code)
