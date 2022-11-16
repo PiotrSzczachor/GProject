@@ -1,5 +1,6 @@
 class Program:
-    instructions = []
+    def __init__(self):
+        self.instructions = []
 
     def __str__(self):
         return "program\n{\n" + self.stringify_instructions() + "}"

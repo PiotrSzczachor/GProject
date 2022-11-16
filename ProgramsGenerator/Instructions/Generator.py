@@ -13,15 +13,22 @@ from Empty import Empty
 
 sys.setrecursionlimit(10000)
 
-def generateRandomProgram(program, depth, i = 0):
+def generateRandomProgram(program, depth, i = 0, is_nested_ = False):
     instructions = ["for", "if", "assignment", "input", "print", "declaration", "empty"]
     variables_values = ["var", "val"]
     comparators = ["<", "<=", ">", ">=", "==", "!="]
     types = ["lancuch", "calkowita", "zmiennoprzecinkowa"]
     boolea_values = ["prawda", "falsz"]
     nested = [True, False]
+    break_while = [True, False]
 
     while i < depth:
+        if is_nested_:
+            random_break = break_while[random.randint(0, 1)]
+            if random_break:
+                i = 0
+                is_nested_ = False
+                break
         instruction = instructions[random.randint(0, len(instructions)-1)]
         #switch case
         if instruction == "for":
@@ -34,7 +41,7 @@ def generateRandomProgram(program, depth, i = 0):
             if is_nested and i < depth:
                 i += 1
                 if i != depth:
-                    loop = generateRandomProgram(loop, depth, i)
+                    loop = generateRandomProgram(loop, depth, i, True)
             program.add_instruction(loop)
         if instruction == "if":
             value = variables_values[random.randint(0, len(variables_values)-1)]
@@ -52,7 +59,7 @@ def generateRandomProgram(program, depth, i = 0):
             if is_nested and i < depth:
                 i += 1
                 if i != depth:
-                    if_statement = generateRandomProgram(if_statement, depth, i)
+                    if_statement = generateRandomProgram(if_statement, depth, i, True)
             program.add_instruction(if_statement)
         if instruction == "assignment":
             var = random.choice(string.ascii_letters)
@@ -112,41 +119,22 @@ def get_program_element(element):
 
 
 def program_mutation(P, max_depth):
-    index = random.randint(0, len(P.instructions)-1)
-    nested = [True, False]
-    element = P.instructions[index]
-    tmp = None
-    if isinstance(element, Assignment):
-        is_nested = nested[random.randint(0, len(nested) - 1)]
-        if is_nested:
-            tmp = generateRandomProgram(Program(), max_depth)
-        else:
-            new_value = random.randint(-1000, 1000)
-            element.value = new_value
-    if isinstance(element, Empty):
-        tmp = generateRandomProgram(Program(), max_depth)
-    if isinstance(element, Input):
-        is_nested = nested[random.randint(0, len(nested) - 1)]
-        if is_nested:
-            tmp = generateRandomProgram(Program(), max_depth)
-        else:
-            element.variable = random.choice(string.ascii_letters)
-    if isinstance(element, Print):
-        is_nested = nested[random.randint(0, len(nested) - 1)]
-        if is_nested:
-            tmp = generateRandomProgram(Program(), max_depth)
-    if isinstance(element, VarDeclaration):
-        tmp = generateRandomProgram(Program(), max_depth)
-    element.instructions.clear()
-    element = generateRandomProgram(element, max_depth, 0)
-    return P
+    # Getting random program element
+    element = get_program_element(P)
+    print(element)
+    # Getting random instruction
+    random_instructions = generateRandomProgram(Program(), max_depth)
+    random_instruction = random_instructions.instructions[random.randint(0, len(random_instructions.instructions)-1)]
+    print(random_instruction)
+    element_index = element.parent.instructions.index(element)
+    element.parent.instructions[element_index] = random_instruction
 
 
-P1 = generateRandomProgram(Program(), 3)
-P2 = generateRandomProgram(Program(), 3)
+P1 = generateRandomProgram(Program(), 5)
 
 print(P1)
 print("\n\n")
-programs_crossing(P1, P2)
+program_mutation(P1, 5)
 print("\n\n")
 print(P1)
+
