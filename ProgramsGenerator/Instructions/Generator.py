@@ -137,8 +137,10 @@ def program_mutation(P, max_depth):
     element.parent.instructions[element_index] = random_instruction
 
 
-P1 = generateRandomProgram(Program(), 4)
+P1 = generateRandomProgram(Program(), 2)
 
+#P2 = generateRandomProgram(Program(), 3)
 print(P1)
-
+print("\n\n\n")
+#print(P2)
 
