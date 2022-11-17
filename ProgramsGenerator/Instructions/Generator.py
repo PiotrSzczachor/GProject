@@ -137,6 +137,12 @@ def program_mutation(P, max_depth):
     element.parent.instructions[element_index] = random_instruction
 
 
+def save_program_to_file(P, path):
+    f = open(path, "w")
+    f.write(str(P))
+    f.close()
+
+
 P1 = generateRandomProgram(Program(), 2)
 P2 = generateRandomProgram(Program(), 2)
 print(P1)
@@ -148,3 +154,5 @@ print("After crossing")
 print(P1)
 print("\n\n\n")
 print(P2)
+
+save_program_to_file(P1, "C:/Users/Piotr/PycharmProjects/GProject/test.txt")

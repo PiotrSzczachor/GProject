@@ -1,28 +1,36 @@
 program
 {
-wyswietl(806.6987453533751);
-calkowita q = 187;
-dla(calkowita Y = 2478; Y < 5066; Y = Y + 76)
+wprowadz(Y);
+z = 91.53983194594551;
+dla(calkowita n = 2774; n < 6524; n = n + 357)
 {
 }
-dla(calkowita w = 372; w < 4377; w = w + 949)
+wprowadz(u);
+wyswietl(106.85367101601229);
+jezeli(B >= T)
 {
 }
-dla(calkowita V = 3182; V < 12552; V = V + 355)
+wprowadz(a);
+calkowita Y = 316;
+D = 88.69130580693462;
+d = 366.40281122658416;
+calkowita x = 813;
+zmiennoprzecinkowa E = 77.01706170179202;
+zmiennoprzecinkowa Q = 271.76417138869226;
+dla(calkowita W = 44; W < 2987; W = W + 721)
+{
+Y = 829.5780066626924;
+jezeli(i != O)
 {
 }
-dla(calkowita c = 2652; c < 5676; c = c + 670)
-{
-}
-wyswietl(k);
-zmiennoprzecinkowa s = 34.54846445732185;
-jezeli(10.304403567557685 <= 977.240889832443)
-{
-}
-jezeli(B != w)
-{
-wyswietl(O);
-dla(calkowita Z = 4301; Z < 9870; Z = Z + 442)
+wprowadz(m);
+wyswietl(x);
+calkowita m = 696;
+y = 679.0788867010526;
+i = 93.5107668354932;
+wyswietl(650.6553073798328);
+h = 733.0446030660552;
+jezeli(Z > F)
 {
 }
 }
