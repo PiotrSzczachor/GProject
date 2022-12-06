@@ -97,18 +97,32 @@ def t_newline(t):
 
 lexer = lex.lex()
 
+# -----------------------------------------------CREATING .PY FILE CONTENT----------------------------------------------
+pythonCode = ""
+elements = {}
+num_of_tabs = 0
+inClass = False
+# -----------------------------------------------GRAMMAR----------------------------------------------------------------
 
 
 def p_start_symbol(p):
     '''
     start_symbol : program
     '''
+    p[0] = p[1]
+    global pythonCode
+    pythonCode = p[0]
+
 
 def p_program(p):
     '''
     program : PROGRAM LEFT_BR_CURLY instructions RIGHT_BR_CURLY
             | empty
     '''
+    if len(p) == 2:
+        p[0] = p[1]
+    else:
+        p[0] = p[3]
 
 
 def p_instructions(p):
@@ -116,6 +130,10 @@ def p_instructions(p):
     instructions : instruction
         | instruction instructions
     '''
+    if len(p) == 2:
+        p[0] = p[1]
+    elif len(p) == 3:
+        p[0] = p[1] + p[2]
 
 
 def p_instruction(p):
@@ -128,24 +146,42 @@ def p_instruction(p):
         | print
         | input
     '''
+    global num_of_tabs
+    tabs = ""
+    for i in range(num_of_tabs):
+        tabs += "    "
+    if p[1] != "":
+        p[0] = tabs + str(p[1])
+    else:
+        p[0] = p[1]
 
 
 def p_for_loop(p):
     '''
-    for_loop : for_loop_statement LEFT_BR_CURLY instructions RIGHT_BR_CURLY
+    for_loop : for_loop_statement LEFT_BR_CURLY change_tab_number instructions RIGHT_BR_CURLY
     '''
+    p[0] = p[1] + ":\n" + p[4] + "\n"
+    global num_of_tabs
+    num_of_tabs -= 1
 
 
 def p_for_loop_statement(p):
     '''
     for_loop_statement : FOR LEFT_BR INT VAR EQUAL INT_NUMBER SEMICOLON VAR LESS INT_NUMBER SEMICOLON VAR EQUAL VAR PLUS number RIGHT_BR
     '''
+    start_range = p[6]
+    end_range = p[10]
+    step = p[16]
+    p[0] = "for " + p[4] + " in range(" + str(start_range) + ", " + str(end_range) + ", " + str(step) + ")"
 
 
 def p_if_statement(p):
     '''
-    if_statement : IF LEFT_BR comparisons RIGHT_BR LEFT_BR_CURLY instructions RIGHT_BR_CURLY
+    if_statement : IF LEFT_BR comparisons RIGHT_BR LEFT_BR_CURLY change_tab_number instructions RIGHT_BR_CURLY
     '''
+    p[0] = "if " + p[3] + ":\n" + str(p[7]) + "\n"
+    global num_of_tabs
+    num_of_tabs -= 1
 
 
 def p_comparisons(p):
@@ -153,12 +189,17 @@ def p_comparisons(p):
     comparisons : comparison
         | comparison conjunction comparisons
     '''
+    if len(p) == 2:
+        p[0] = p[1]
+    elif len(p) == 4:
+        p[0] = p[1] + p[2] + p[3]
 
 
 def p_comparison(p):
     '''
     comparison : value comparator value
     '''
+    p[0] = str(p[1]) + " " + p[2] + " " + str(p[3])
 
 
 def p_comparator(p):
@@ -170,6 +211,7 @@ def p_comparator(p):
         | EQUAL_EQUAL
         | NOT_EQUAL
     '''
+    p[0] = p[1]
 
 
 def p_operator(p):
@@ -179,6 +221,7 @@ def p_operator(p):
         | MULTIPLY
         | DIVIDE
     '''
+    p[0] = p[1]
 
 
 def p_type(p):
@@ -188,6 +231,7 @@ def p_type(p):
         | BOOL
         | FLOAT
     '''
+    p[0] = ""
 
 
 def p_conjunction(p):
@@ -195,7 +239,7 @@ def p_conjunction(p):
     conjunction : AND
         | OR
     '''
-
+    p[0] = p[1]
 
 
 def p_number(p):
@@ -203,6 +247,7 @@ def p_number(p):
     number : INT_NUMBER
         | FLOAT_NUMBER
     '''
+    p[0] = p[1]
 
 
 def p_bool_value(p):
@@ -210,6 +255,10 @@ def p_bool_value(p):
     bool_value : TRUE
         | FALSE
     '''
+    if p[1] == 'prawda':
+        p[0] = 'True'
+    else:
+        p[0] = 'False'
 
 
 def p_value(p):
@@ -220,6 +269,7 @@ def p_value(p):
         | bool_value
         | math_operation
     '''
+    p[0] = p[1]
 
 
 def p_math_operation(p):
@@ -229,6 +279,7 @@ def p_math_operation(p):
         | number operator VAR
         | number operator number
     '''
+    p[0] = str(p[1]) + " " + p[2] + " " + str(p[3])
 
 
 def p_assignment(p):
@@ -236,6 +287,8 @@ def p_assignment(p):
     assignment : VAR EQUAL value SEMICOLON
                | VAR EQUAL VAR SEMICOLON
     '''
+    p[0] = p[1] + p[2] + str(p[3]) + "\n"
+
 
 
 def p_var_declaration(p):
@@ -244,12 +297,17 @@ def p_var_declaration(p):
         | type VAR EQUAL value SEMICOLON
         | type VAR EQUAL VAR SEMICOLON
     '''
+    if len(p) == 5:
+        p[0] = p[1] + p[2] + " = 0\n"
+    elif len(p) == 6:
+        p[0] = str(p[2]) + " " + str(p[3]) + " " + str(p[4]) + "\n"
 
 
 def p_print(p):
     '''
     print : PRINT LEFT_BR out RIGHT_BR SEMICOLON
     '''
+    p[0] = "print(" + str(p[3]) + ")" + "\n"
 
 
 def p_out(p):
@@ -258,23 +316,37 @@ def p_out(p):
         | VAR
         | number
     '''
+    p[0] = p[1]
 
 
 def p_input(p):
     '''
     input : INPUT LEFT_BR VAR RIGHT_BR SEMICOLON
     '''
+    p[0] = "input(" + p[3] + ")" + "\n"
 
 
 def p_empty(p):
     '''
     empty :
     '''
-    p[0] = ""
+    p[0] = "pass"
+
+
+def p_change_tab_number(p):
+    "change_tab_number : "
+    global num_of_tabs
+    num_of_tabs += 1
 
 
 f = open("test.txt", "r")
 code = f.read()
-
 parser = yacc.yacc()
 parser.parse(code)
+lexer.input(code)
+var_declarations = ""
+for token in lexer:
+    if token.type == "VAR":
+        var_declarations += token.value + "= 1\n"
+result = var_declarations + pythonCode
+print(result)
