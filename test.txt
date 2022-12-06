@@ -1,95 +1,22 @@
 program
 {
-zmiennoprzecinkowa k = 26.542652416297386;
-wprowadz(e);
-jezeli(C != a)
-{
-jezeli(381.90347448275685 != 402.67321886688137)
+jezeli(k >= K)
 {
 }
-calkowita H = 405;
-wprowadz(I);
-f = 218.91196571437632;
-wprowadz(A);
-dla(calkowita S = 8149; S < 18140; S = S + 854)
+J = 523.9368030928382;
+h = 412.6345585654757;
+a = 241.52311848814588;
+dla(calkowita l = 5084; l < 6477; l = l + 977)
 {
-}
-i = 336.57147313792467;
-calkowita V = 976;
-i = 149.24539318933427;
-}
-calkowita m = 115;
-M = 248.89005701067802;
-h = 912.7548971404287;
-wprowadz(p);
-jezeli(269.2076931061391 == 677.5190248659769)
+jezeli(s <= X)
 {
-}
-dla(calkowita T = 6799; T < 12063; T = T + 784)
+jezeli(947.6419047117698 == 847.4079382989584)
 {
-}
-wprowadz(j);
-wyswietl(a);
-logiczna N = falsz;
-calkowita G = 92;
-jezeli(957.233011310282 >= 416.7674631374995)
-{
-}
-dla(calkowita W = 413; W < 6887; W = W + 195)
-{
-}
-calkowita q = 854;
-jezeli(191.5027303729353 > 38.28236091829296)
-{
-}
-B = 404.88916158104826;
-j = 641.3091032104325;
-zmiennoprzecinkowa M = 162.34539245521563;
-jezeli(419.06603810467357 == 33.52990478325468)
-{
-dla(calkowita f = 2466; f < 7444; f = f + 496)
-{
-}
-}
-jezeli(73.31983133496355 > 446.1598667349409)
-{
-calkowita E = 637;
-jezeli(272.21269173917193 != 379.06545803612266)
-{
-}
-calkowita l = 329;
-dla(calkowita a = 2483; a < 6169; a = a + 949)
-{
-calkowita X = 492;
-}
-dla(calkowita P = 4759; P < 12296; P = P + 549)
-{
-}
-wprowadz(Y);
-zmiennoprzecinkowa h = 277.84150829894014;
-dla(calkowita B = 8667; B < 17787; B = B + 127)
-{
-}
-dla(calkowita T = 1241; T < 3701; T = T + 629)
-{
-}
-logiczna G = prawda;
-wprowadz(l);
-wprowadz(n);
-dla(calkowita P = 2067; P < 8656; P = P + 618)
-{
-}
-wyswietl(g);
-calkowita l = 679;
-wyswietl(D);
-wprowadz(z);
-wyswietl(l);
-wyswietl(p);
-jezeli(z < b)
-{
-jezeli(916.2373960763555 >= 940.432636457047)
-{
-dla(calkowita l = 3147; l < 6781; l = l + 33)
+wprowadz(m);
+zmiennoprzecinkowa X = 477.0603192693836;
+d = 627.3996400257859;
+wprowadz(t);
+jezeli(803.8900315495076 != 961.0431142286878)
 {
 }
 }

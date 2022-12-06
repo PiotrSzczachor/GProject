@@ -2,15 +2,14 @@ import random
 import string
 import sys
 
-from ForLoop import ForLoop
-from IfStatement import IfStatement
-from Assignment import Assignment
-from Input import Input
-from Print import Print
-from VarDeclaration import VarDeclaration
-from Program import Program
-from Empty import Empty
-
+from ProgramsGenerator.Instructions.Program import Program
+from ProgramsGenerator.Instructions.ForLoop import ForLoop
+from ProgramsGenerator.Instructions.IfStatement import IfStatement
+from ProgramsGenerator.Instructions.Assignment import Assignment
+from ProgramsGenerator.Instructions.Input import Input
+from ProgramsGenerator.Instructions.Print import Print
+from ProgramsGenerator.Instructions.VarDeclaration import VarDeclaration
+from ProgramsGenerator.Instructions.Empty import Empty
 sys.setrecursionlimit(10000)
 
 
@@ -106,7 +105,6 @@ class Generator:
         P1_element.parent.instructions[P1_element_index] = P2_element
         P2_element.parent.instructions[P2_element_index] = P1_element
 
-
     def get_program_element(self, element):
         nested = [True, False]
         if isinstance(element, Program):
@@ -126,11 +124,11 @@ class Generator:
     def program_mutation(self, P, max_depth):
         # Getting random program element
         element = self.get_program_element(P)
-        print(element)
+        #print(element)
         # Getting random instruction
         random_instructions = self.generateRandomProgram(Program(), max_depth)
         random_instruction = random_instructions.instructions[random.randint(0, len(random_instructions.instructions) - 1)]
-        print(random_instruction)
+        #print(random_instruction)
         element_index = element.parent.instructions.index(element)
         element.parent.instructions[element_index] = random_instruction
 
@@ -139,18 +137,3 @@ class Generator:
         f.write(str(P))
         f.close()
 
-
-G = Generator()
-P1 = G.generateRandomProgram(Program(), 3)
-P2 = G.generateRandomProgram(Program(), 3)
-print(P1)
-print("\n\n\n")
-print(P2)
-print("\n\n\n")
-G.programs_crossing(P1, P2)
-print("After crossing")
-print(P1)
-print("\n\n\n")
-print(P2)
-
-G.save_program_to_file(P1, "C:/Users/Piotr/PycharmProjects/GProject/test.txt")

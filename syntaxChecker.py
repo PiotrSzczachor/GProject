@@ -1,5 +1,7 @@
 from ply import lex
 from ply import yacc
+from ProgramsGenerator.Instructions.Generator import Generator
+from ProgramsGenerator.Instructions.Program import Program
 
 reserved = {
     'program': 'PROGRAM',
@@ -39,8 +41,7 @@ tokens = [
              'VAR',
              'TEXT',
              'ID'
-        ] + list(reserved.values())
-
+         ] + list(reserved.values())
 
 t_EQUAL_EQUAL = r'\=='
 t_PLUS = r'\+'
@@ -61,6 +62,7 @@ t_NOT_EQUAL = r'\!='
 t_AND = r'\&&'
 t_OR = r'\|\|'
 t_ignore = ' '
+
 
 def t_FLOAT_NUMBER(t):
     r'\d+\.\d+'
@@ -84,7 +86,6 @@ def t_ID(t):
     return t
 
 
-
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
@@ -102,6 +103,8 @@ pythonCode = ""
 elements = {}
 num_of_tabs = 0
 inClass = False
+
+
 # -----------------------------------------------GRAMMAR----------------------------------------------------------------
 
 
@@ -290,7 +293,6 @@ def p_assignment(p):
     p[0] = p[1] + p[2] + str(p[3]) + "\n"
 
 
-
 def p_var_declaration(p):
     '''
     var_declaration : type VAR SEMICOLON
@@ -307,7 +309,7 @@ def p_print(p):
     '''
     print : PRINT LEFT_BR out RIGHT_BR SEMICOLON
     '''
-    p[0] = "print(" + str(p[3]) + ")" + "\n"
+    p[0] = "output += str(" + str(p[3]) + ") + '\\n'\n"
 
 
 def p_out(p):
@@ -323,7 +325,12 @@ def p_input(p):
     '''
     input : INPUT LEFT_BR VAR RIGHT_BR SEMICOLON
     '''
-    p[0] = "input(" + p[3] + ")" + "\n"
+    global input_values
+    global input_counter
+    global input_count
+    p[0] = p[3] + " = " + input_values[input_counter] + "\n"
+    if input_counter < len(input_values) - 1:
+        input_counter += 1
 
 
 def p_empty(p):
@@ -339,18 +346,32 @@ def p_change_tab_number(p):
     num_of_tabs += 1
 
 
+G = Generator()
+P1 = G.generateRandomProgram(Program(), 4)
+G.save_program_to_file(P1, 'test.txt')
+
 f = open("test.txt", "r")
 code = f.read()
-parser = yacc.yacc()
-parser.parse(code)
+
+f = open("input.txt", "r")
+input_values = f.read().split(" ")
+
 lexer.input(code)
 variables = []
+input_counter = 0
 for token in lexer:
     if token.type == "VAR":
         variables.append(token.value)
+
+
 variables = list(set(variables))
 var_declarations = ""
 for var in variables:
     var_declarations += var + " = 1\n"
-result = var_declarations + pythonCode
-print(result)
+
+parser = yacc.yacc()
+parser.parse(code)
+write_to_file = "file = open('output.txt', 'w')\nfile.write(output)\nfile.close()"
+
+result = 'output = ""\n' + var_declarations + pythonCode + write_to_file
+exec(result)
