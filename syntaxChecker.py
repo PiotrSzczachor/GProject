@@ -344,9 +344,13 @@ code = f.read()
 parser = yacc.yacc()
 parser.parse(code)
 lexer.input(code)
-var_declarations = ""
+variables = []
 for token in lexer:
     if token.type == "VAR":
-        var_declarations += token.value + "= 1\n"
+        variables.append(token.value)
+variables = list(set(variables))
+var_declarations = ""
+for var in variables:
+    var_declarations += var + " = 1\n"
 result = var_declarations + pythonCode
 print(result)
