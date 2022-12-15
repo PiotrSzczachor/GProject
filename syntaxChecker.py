@@ -1,7 +1,11 @@
+import random
+
 from ply import lex
 from ply import yacc
 from ProgramsGenerator.Instructions.Generator import Generator
 from ProgramsGenerator.Instructions.Program import Program
+import numpy as np
+import copy
 
 reserved = {
     'program': 'PROGRAM',
@@ -259,9 +263,9 @@ def p_bool_value(p):
         | FALSE
     '''
     if p[1] == 'prawda':
-        p[0] = 'True'
+        p[0] = '1'
     else:
-        p[0] = 'False'
+        p[0] = '0'
 
 
 def p_value(p):
@@ -337,7 +341,7 @@ def p_empty(p):
     '''
     empty :
     '''
-    p[0] = "pass"
+    p[0] = "pass\n"
 
 
 def p_change_tab_number(p):
@@ -346,32 +350,125 @@ def p_change_tab_number(p):
     num_of_tabs += 1
 
 
-G = Generator()
-P1 = G.generateRandomProgram(Program(), 4)
-G.save_program_to_file(P1, 'test.txt')
+def translate_and_execute(alternative = False):
+    if alternative:
+        file_name = "alternativeIndividual.txt"
+    else:
+        file_name = "currentIndividual.txt"
+    f = open(file_name, "r")
+    code = f.read()
+    f = open("input.txt", "r")
+    global input_values
+    global variables
+    global input_counter
+    input_values = []
+    input_values = f.read().split(" ")
 
-f = open("test.txt", "r")
-code = f.read()
+    lexer.input(code)
+    variables = []
+    input_counter = 0
+    for token in lexer:
+        if token.type == "VAR":
+            variables.append(token.value)
 
-f = open("input.txt", "r")
-input_values = f.read().split(" ")
+    variables = list(set(variables))
+    var_declarations = ""
+    for var in variables:
+        var_declarations += var + " = 0\n"
 
-lexer.input(code)
+    parser = yacc.yacc()
+    parser.parse(code)
+    write_to_file = "file = open('output.txt', 'w')\nfile.write(output)\nfile.close()"
+
+    result = 'output = ""\n' + var_declarations + pythonCode + write_to_file
+
+    exec(result)
+
+
+def at_least_one_1(values):
+    smallest_difference = np.inf
+    for value in values:
+        if value != "":
+            if abs(float(value) - 1) < smallest_difference:
+                smallest_difference = abs(float(value) - 1)
+    return smallest_difference
+
+
+def at_least_one_789(values):
+    smallest_difference = np.inf
+    for value in values:
+        if value != "":
+            if abs(float(value) - 789) < smallest_difference:
+                smallest_difference = abs(float(value) - 789)
+    return smallest_difference
+
+
+def one_at_first_place(values):
+    if len(values) > 0 and values[0] != "":
+        return abs(1 - float(values[0]))
+    else:
+        return np.inf
+
+
+def sum(values):
+    global input_values
+    input_sum = int(input_values[0]) + int(input_values[1])
+    if len(values) != 2:
+        return np.inf
+    else:
+        if values[0] != "":
+            return abs(input_sum - float(values[0]))
+        else:
+            return np.inf
+
+def check_fitness():
+    f = open("output.txt", "r")
+    output_values = f.read().split('\n')
+    fitness = sum(output_values)
+    return fitness
+
+
+def run():
+    G = Generator()
+    options = ["crossing", "mutation"]
+    best_individual = G.generateRandomProgram(Program(), 3)
+    G.save_program_to_file(best_individual, 'bestIndividual.txt')
+    G.save_program_to_file(best_individual, 'currentIndividual.txt')
+    translate_and_execute()
+    best_fitness = check_fitness()
+    individual_number = 0
+    print("Individual number: " + str(individual_number) + " Best Fintess: " + str(best_fitness))
+    while best_fitness != 0:
+        individual_number += 1
+        if options[random.randint(0, 1)] == 'crossing':
+            P = G.generateRandomProgram(Program(), 3)
+            alternative_individual_1, alternative_individual_2 = G.programs_crossing(best_individual, P)
+            G.save_program_to_file(alternative_individual_1, 'alternativeIndividual.txt')
+            translate_and_execute(True)
+            fitness_1 = check_fitness()
+            G.save_program_to_file(alternative_individual_2, 'alternativeIndividual.txt')
+            translate_and_execute(True)
+            fitness_2 = check_fitness()
+            if fitness_1 < fitness_2:
+                alternative_individual = alternative_individual_1
+            else:
+                alternative_individual = alternative_individual_2
+        else:
+            alternative_individual = copy.deepcopy(best_individual)
+            G.program_mutation(alternative_individual, 4)
+        translate_and_execute(True)
+        fitness = check_fitness()
+        if fitness < best_fitness:
+            best_fitness = fitness
+            best_individual = alternative_individual
+            G.save_program_to_file(best_individual, "bestIndividual.txt")
+        if best_fitness != 0:
+            print("Individual number: " + str(individual_number) + " Best Fintess: " + str(best_fitness))
+        else:
+            print("Solution found in iteration number " + str(individual_number) + " ! Check it in bestIndividual file")
+
+
+input_values = []
 variables = []
 input_counter = 0
-for token in lexer:
-    if token.type == "VAR":
-        variables.append(token.value)
-
-
-variables = list(set(variables))
-var_declarations = ""
-for var in variables:
-    var_declarations += var + " = 1\n"
-
-parser = yacc.yacc()
-parser.parse(code)
-write_to_file = "file = open('output.txt', 'w')\nfile.write(output)\nfile.close()"
-
-result = 'output = ""\n' + var_declarations + pythonCode + write_to_file
-exec(result)
+run()

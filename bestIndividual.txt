@@ -1,0 +1,47 @@
+program
+{
+wprowadz(p);
+wyswietl(3.0208964973810204);
+wprowadz(q);
+jezeli(177.39001849500946 <= 150.44621154461402)
+{
+wprowadz(C);
+wyswietl(163.89837756366822);
+wyswietl(u);
+jezeli(c == p)
+{
+n = 151.3253964830643;
+Z = 553.6178819233968;
+logiczna A = prawda;
+logiczna p = falsz;
+wyswietl(4.513340900446972);
+zmiennoprzecinkowa V = 348.7136310359298;
+}
+o = 917.4543845101583;
+wyswietl(66.87423201749209);
+dla(calkowita R = 64; R < 132; R = R + 889)
+{
+}
+jezeli(S == A)
+{
+wprowadz(g);
+dla(calkowita E = 438; E < 1409; E = E + 743)
+{
+}
+jezeli(Y == O)
+{
+jezeli(6.22835878629413 != 419.3669153878997)
+{
+}
+X = 684.698124019821;
+wyswietl(g);
+o = 214.05073549441033;
+logiczna h = prawda;
+zmiennoprzecinkowa y = 298.43313036844944;
+dla(calkowita O = 124; O < 558; O = O + 363)
+{
+}
+}
+}
+}
+}

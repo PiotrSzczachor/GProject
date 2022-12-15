@@ -1,0 +1,137 @@
+program
+{
+zmiennoprzecinkowa p = 319.5984197552805;
+zmiennoprzecinkowa t = 504.67699859725246;
+calkowita o = 564;
+wyswietl(762.9532351683368);
+jezeli(702.6711262180227 < 4.869074837554166)
+{
+dla(calkowita n = 575; n < 1451; n = n + 989)
+{
+}
+wprowadz(t);
+}
+wyswietl(248.2624279472434);
+c = 170.07215733065385;
+jezeli(537.5631250237819 != 139.9958686380479)
+{
+calkowita V = 826;
+logiczna L = prawda;
+jezeli(q >= x)
+{
+}
+wyswietl(190.83468456759945);
+wprowadz(s);
+wprowadz(y);
+b = 440.79880898885983;
+u = 857.3623374280975;
+}
+wprowadz(q);
+T = 168.76374690783436;
+wyswietl(170.27224627243675);
+m = 887.320843730368;
+zmiennoprzecinkowa N = 369.21164270878916;
+o = 202.68806615996127;
+dla(calkowita o = 441; o < 1076; o = o + 566)
+{
+wyswietl(593.5184458680402);
+wprowadz(G);
+wyswietl(u);
+wyswietl(651.186641128126);
+jezeli(S != i)
+{
+}
+}
+logiczna D = falsz;
+dla(calkowita B = 394; B < 1118; B = B + 718)
+{
+}
+jezeli(635.6997008267234 > 389.3831737672946)
+{
+}
+wprowadz(q);
+wprowadz(X);
+dla(calkowita V = 793; V < 1731; V = V + 666)
+{
+}
+jezeli(56.025942236519796 == 132.75340420109362)
+{
+jezeli(v != K)
+{
+jezeli(11.275781395739703 > 646.6355790307931)
+{
+}
+dla(calkowita P = 828; P < 1179; P = P + 817)
+{
+}
+jezeli(M < h)
+{
+}
+wyswietl(g);
+wyswietl(q);
+calkowita n = 253;
+wyswietl(518.101178992775);
+wprowadz(A);
+}
+B = 866.7069170489129;
+wyswietl(243.37187049545005);
+wyswietl(630.972156868113);
+dla(calkowita s = 853; s < 1423; s = s + 23)
+{
+Z = 682.5906987491926;
+}
+dla(calkowita y = 466; y < 1054; y = y + 946)
+{
+}
+jezeli(p < t)
+{
+}
+dla(calkowita U = 410; U < 667; U = U + 623)
+{
+zmiennoprzecinkowa K = 876.7844568770637;
+b = 621.6778496519022;
+R = 397.80984834350573;
+wprowadz(X);
+dla(calkowita y = 939; y < 1821; y = y + 612)
+{
+}
+X = 12.827160954737016;
+d = 71.50992626162567;
+jezeli(323.72094668132524 >= 42.609354633360795)
+{
+}
+wprowadz(x);
+dla(calkowita o = 511; o < 1319; o = o + 782)
+{
+wprowadz(g);
+}
+zmiennoprzecinkowa o = 357.55536200207484;
+wprowadz(U);
+jezeli(314.3777723409131 == 263.5538418587756)
+{
+}
+wprowadz(Q);
+dla(calkowita N = 680; N < 903; N = N + 825)
+{
+jezeli(n >= w)
+{
+}
+wyswietl(909.1717744618466);
+jezeli(E < V)
+{
+}
+zmiennoprzecinkowa R = 44.6521269067558;
+zmiennoprzecinkowa d = 717.2736508428958;
+jezeli(y < H)
+{
+zmiennoprzecinkowa v = 389.66007685703516;
+A = 184.31930064036484;
+wprowadz(R);
+dla(calkowita p = 427; p < 1043; p = p + 945)
+{
+}
+}
+}
+}
+}
+}

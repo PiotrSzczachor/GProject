@@ -1,6 +1,7 @@
 import random
 import string
 import sys
+import copy
 
 from ProgramsGenerator.Instructions.Program import Program
 from ProgramsGenerator.Instructions.ForLoop import ForLoop
@@ -10,6 +11,7 @@ from ProgramsGenerator.Instructions.Input import Input
 from ProgramsGenerator.Instructions.Print import Print
 from ProgramsGenerator.Instructions.VarDeclaration import VarDeclaration
 from ProgramsGenerator.Instructions.Empty import Empty
+
 sys.setrecursionlimit(10000)
 
 
@@ -29,16 +31,16 @@ class Generator:
 
         while self.counter < depth:
             if is_nested_:
-                random_break = break_while[random.randint(0, len(break_while)-1)]
+                random_break = break_while[random.randint(0, len(break_while) - 1)]
                 if random_break:
                     self.counter = 0
                     break
             instruction = instructions[random.randint(0, len(instructions) - 1)]
             # switch case
             if instruction == "for":
-                start = random.randint(0, 10000)
-                end = random.randint(start + 1, start + 10000)
-                increment = random.randint(0, 1000)
+                start = random.randint(0, 1000)
+                end = random.randint(start + 1, start + 1000)
+                increment = random.randint(1, 1000)
                 iterator_name = random.choice(string.ascii_letters)
                 loop = ForLoop(iterator_name, start, end, increment, program)
                 is_nested = nested[random.randint(0, len(nested) - 1)]
@@ -97,13 +99,19 @@ class Generator:
                 program.add_instruction(Empty(program))
         return program
 
-    def programs_crossing(self, P1, P2):
-        P1_element = self.get_program_element(P1)
-        P2_element = self.get_program_element(P2)
-        P1_element_index = P1_element.parent.instructions.index(P1_element)
-        P2_element_index = P2_element.parent.instructions.index(P2_element)
-        P1_element.parent.instructions[P1_element_index] = P2_element
-        P2_element.parent.instructions[P2_element_index] = P1_element
+    def programs_crossing(self, P_1, P_2):
+        P1 = copy.deepcopy(P_1)
+        P2 = copy.deepcopy(P_2)
+        try:
+            P1_element = self.get_program_element(P1)
+            P2_element = self.get_program_element(P2)
+            P1_element_index = P1_element.parent.instructions.index(P1_element)
+            P2_element_index = P2_element.parent.instructions.index(P2_element)
+            P1_element.parent.instructions[P1_element_index] = P2_element
+            P2_element.parent.instructions[P2_element_index] = P1_element
+        except ValueError:
+            pass
+        return P1, P2
 
     def get_program_element(self, element):
         nested = [True, False]
@@ -122,18 +130,21 @@ class Generator:
         return element
 
     def program_mutation(self, P, max_depth):
-        # Getting random program element
-        element = self.get_program_element(P)
-        #print(element)
-        # Getting random instruction
-        random_instructions = self.generateRandomProgram(Program(), max_depth)
-        random_instruction = random_instructions.instructions[random.randint(0, len(random_instructions.instructions) - 1)]
-        #print(random_instruction)
-        element_index = element.parent.instructions.index(element)
-        element.parent.instructions[element_index] = random_instruction
+        try:
+            # Getting random program element
+            element = self.get_program_element(P)
+            # print(element)
+            # Getting random instruction
+            random_instructions = self.generateRandomProgram(Program(), max_depth)
+            random_instruction = random_instructions.instructions[
+                random.randint(0, len(random_instructions.instructions) - 1)]
+            # print(random_instruction)
+            element_index = element.parent.instructions.index(element)
+            element.parent.instructions[element_index] = random_instruction
+        except ValueError:
+            pass
 
     def save_program_to_file(self, P, path):
         f = open(path, "w")
         f.write(str(P))
         f.close()
-
