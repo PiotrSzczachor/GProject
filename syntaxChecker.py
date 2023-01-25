@@ -332,7 +332,10 @@ def p_input(p):
     global input_values
     global input_counter
     global input_count
-    p[0] = p[3] + " = " + input_values[input_counter] + "\n"
+    if input_values[input_counter] != "":
+        p[0] = p[3] + " = " + input_values[input_counter] + "\n"
+    else:
+        p[0] = p[3] + " = 0" + "\n"
     if input_counter < len(input_values) - 1:
         input_counter += 1
 
@@ -351,18 +354,26 @@ def p_change_tab_number(p):
 
 
 def translate_and_execute(alternative = False):
+    global input_row_number
     if alternative:
         file_name = "alternativeIndividual.txt"
     else:
-        file_name = "currentIndividual.txt"
+        file_name = "bestIndividual.txt"
     f = open(file_name, "r")
     code = f.read()
     f = open("input.txt", "r")
     global input_values
     global variables
     global input_counter
+    global input_row_counter
     input_values = []
-    input_values = f.read().split(" ")
+    input_values_rows = f.read().split("\n")
+    input_row_number = len(input_values_rows)
+    input_values = input_values_rows[input_row_counter].split(" ")
+    if input_row_counter != input_row_number - 1:
+        input_row_counter += 1
+    else:
+        input_row_counter = 0
 
     lexer.input(code)
     variables = []
@@ -398,14 +409,14 @@ def at_least_one_789(values):
     smallest_difference = np.inf
     for value in values:
         if value != "":
-            if abs(float(value) - 789) < smallest_difference:
-                smallest_difference = abs(float(value) - 789)
+            if abs(float(value) - 7) < smallest_difference:
+                smallest_difference = abs(float(value) - 7)
     return smallest_difference
 
 
 def one_at_first_place(values):
     if len(values) > 0 and values[0] != "":
-        return abs(1 - float(values[0]))
+        return abs(10 - float(values[0]))
     else:
         return np.inf
 
@@ -421,14 +432,55 @@ def sum(values):
         else:
             return np.inf
 
+
+def sum_int_float(values):
+    global input_values
+    input_sum = int(input_values[0]) + float(input_values[1])
+    if len(values) != 2:
+        return np.inf
+    else:
+        if values[0] != "":
+            return abs(input_sum - float(values[0]))
+        else:
+            return np.inf
+
+
+def squared_sum(values):
+    global input_values
+    suma = 0
+    for i in range(len(input_values)):
+        suma += pow(int(input_values[i]), 2)
+    if len(values) > 0 and values[0] != "":
+        return abs(suma - float(values[0]))
+    else:
+        return np.inf
+
+
+def print_smallest_int(values):
+    global input_values
+    min = np.inf
+    for i in range(len(input_values)):
+        if int(input_values[i]) < min:
+            min = int(input_values[i])
+    if len(values) > 0 and values[0] != "":
+        if values[0].isdigit():
+            return abs(min - int(values[0]))
+        else:
+            return np.inf
+    else:
+        return np.inf
+
+
 def check_fitness():
     f = open("output.txt", "r")
     output_values = f.read().split('\n')
-    fitness = sum(output_values)
+    fitness = one_at_first_place(output_values)
     return fitness
 
 
 def run():
+    global input_row_counter
+    global input_row_number
     G = Generator()
     options = ["crossing", "mutation"]
     best_individual = G.generateRandomProgram(Program(), 3)
@@ -436,19 +488,33 @@ def run():
     G.save_program_to_file(best_individual, 'currentIndividual.txt')
     translate_and_execute()
     best_fitness = check_fitness()
+    while input_row_counter != 0:
+        translate_and_execute()
+        best_fitness += check_fitness()
+    best_fitness /= input_row_number
     individual_number = 0
     print("Individual number: " + str(individual_number) + " Best Fintess: " + str(best_fitness))
     while best_fitness != 0:
+        fitness_1 = 0
+        fitness_2 = 0
         individual_number += 1
         if options[random.randint(0, 1)] == 'crossing':
             P = G.generateRandomProgram(Program(), 3)
             alternative_individual_1, alternative_individual_2 = G.programs_crossing(best_individual, P)
             G.save_program_to_file(alternative_individual_1, 'alternativeIndividual.txt')
             translate_and_execute(True)
-            fitness_1 = check_fitness()
+            fitness_1 += check_fitness()
+            while input_row_counter != 0:
+                translate_and_execute(True)
+                fitness_1 += check_fitness()
+            fitness_1 /= input_row_number
             G.save_program_to_file(alternative_individual_2, 'alternativeIndividual.txt')
             translate_and_execute(True)
-            fitness_2 = check_fitness()
+            fitness_2 += check_fitness()
+            while input_row_counter != 0:
+                translate_and_execute(True)
+                fitness_2 += check_fitness()
+            fitness_2 /= input_row_number
             if fitness_1 < fitness_2:
                 alternative_individual = alternative_individual_1
             else:
@@ -456,8 +522,13 @@ def run():
         else:
             alternative_individual = copy.deepcopy(best_individual)
             G.program_mutation(alternative_individual, 4)
+        fitness = 0
         translate_and_execute(True)
-        fitness = check_fitness()
+        fitness += check_fitness()
+        while input_row_counter != 0:
+            translate_and_execute(True)
+            fitness += check_fitness()
+        fitness /= input_row_number
         if fitness < best_fitness:
             best_fitness = fitness
             best_individual = alternative_individual
@@ -471,4 +542,7 @@ def run():
 input_values = []
 variables = []
 input_counter = 0
+input_row_counter = 0
+input_row_number = 0
 run()
+#translate_and_execute()

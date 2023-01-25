@@ -1,20 +1,95 @@
 program
 {
-zmiennoprzecinkowa w = 116.23568230354064;
-wyswietl(878.204085132811);
-jezeli(533.1180589678605 == 261.56811817589454)
+logiczna y = prawda;
+i = 310.4992906621473;
+wyswietl(234.0833145429333);
+dla(calkowita H = 965; H < 1919; H = H + 874)
+{
+wprowadz(d);
+wyswietl(m);
+wyswietl(p);
+wprowadz(T);
+}
+jezeli(L == F)
 {
 }
-jezeli(o < A)
+M = 479.9026152700915;
+wprowadz(O);
+wyswietl(514.5347682210522);
+wyswietl(955.4751292755474);
+dla(calkowita M = 292; M < 913; M = M + 975)
 {
-jezeli(572.832166590176 < 697.0143870143604)
+}
+jezeli(X >= I)
 {
-wprowadz(K);
-Q = 34.79323253471356;
-wyswietl(328.7338269810427);
-wyswietl(828.7871761594049);
-wyswietl(W);
-dla(calkowita k = 598; k < 1331; k = k + 335)
+}
+M = 451.06254618684414;
+zmiennoprzecinkowa c = 985.179572605647;
+wyswietl(975.9577702169006);
+dla(calkowita P = 765; P < 1437; P = P + 74)
+{
+}
+jezeli(E >= P)
+{
+}
+wprowadz(N);
+zmiennoprzecinkowa x = 224.03868763581823;
+jezeli(515.2798627918773 <= 317.40045460085895)
+{
+}
+wyswietl(351.9656370304438);
+wyswietl(609.3969351773585);
+jezeli(598.5116131950341 == 265.0693217743525)
+{
+}
+wyswietl(895.4081957333643);
+jezeli(27.68479170824467 == 313.9364891239418)
+{
+}
+zmiennoprzecinkowa B = 626.7783960418251;
+wyswietl(91.40784117520917);
+wyswietl(a);
+calkowita H = 837;
+m = 124.57036148728795;
+calkowita C = 528;
+wprowadz(R);
+jezeli(743.5419320085429 > 691.5174397610228)
+{
+}
+logiczna Y = falsz;
+zmiennoprzecinkowa F = 949.2424741810198;
+wyswietl(X);
+jezeli(211.63549606763766 <= 295.6047962494814)
+{
+M = 728.0960017118562;
+zmiennoprzecinkowa u = 585.6137441969342;
+logiczna w = falsz;
+jezeli(R < G)
+{
+}
+dla(calkowita R = 167; R < 499; R = R + 668)
+{
+}
+i = 954.610139938077;
+calkowita E = 218;
+M = 252.9834047429872;
+}
+wprowadz(s);
+R = 848.8798031488841;
+dla(calkowita N = 864; N < 1474; N = N + 354)
+{
+}
+dla(calkowita S = 551; S < 1402; S = S + 110)
+{
+b = 714.277182798495;
+wyswietl(959.5680391917724);
+dla(calkowita m = 239; m < 267; m = m + 236)
+{
+calkowita r = 687;
+logiczna K = falsz;
+wyswietl(u);
+wprowadz(o);
+dla(calkowita Q = 59; Q < 196; Q = Q + 841)
 {
 }
 }

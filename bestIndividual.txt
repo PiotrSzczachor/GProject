@@ -1,44 +1,89 @@
 program
 {
-wprowadz(p);
-wyswietl(3.0208964973810204);
-wprowadz(q);
-jezeli(177.39001849500946 <= 150.44621154461402)
-{
-wprowadz(C);
-wyswietl(163.89837756366822);
-wyswietl(u);
-jezeli(c == p)
-{
-n = 151.3253964830643;
-Z = 553.6178819233968;
-logiczna A = prawda;
-logiczna p = falsz;
-wyswietl(4.513340900446972);
-zmiennoprzecinkowa V = 348.7136310359298;
-}
-o = 917.4543845101583;
-wyswietl(66.87423201749209);
-dla(calkowita R = 64; R < 132; R = R + 889)
+wyswietl(a);
+dla(calkowita s = 392; s < 875; s = s + 813)
 {
 }
-jezeli(S == A)
+jezeli(893.6164655710735 != 196.53442158083655)
 {
-wprowadz(g);
-dla(calkowita E = 438; E < 1409; E = E + 743)
+dla(calkowita x = 917; x < 920; x = x + 328)
 {
-}
-jezeli(Y == O)
-{
-jezeli(6.22835878629413 != 419.3669153878997)
+y = 859.3704679315199;
+J = 351.3345812449808;
+jezeli(606.0913728320712 >= 127.31576696945478)
 {
 }
-X = 684.698124019821;
-wyswietl(g);
-o = 214.05073549441033;
-logiczna h = prawda;
-zmiennoprzecinkowa y = 298.43313036844944;
-dla(calkowita O = 124; O < 558; O = O + 363)
+dla(calkowita y = 253; y < 514; y = y + 831)
+{
+}
+wprowadz(c);
+}
+wprowadz(P);
+wprowadz(H);
+jezeli(844.3127490219879 == 818.8570200694876)
+{
+zmiennoprzecinkowa i = 558.7250037432206;
+}
+jezeli(483.4971284454439 <= 993.748777021492)
+{
+}
+G = 52.1044727491754;
+wprowadz(M);
+logiczna f = prawda;
+x = 46.49694609118215;
+w = 225.24120447335505;
+wprowadz(i);
+zmiennoprzecinkowa U = 132.43306016594303;
+K = 576.594175718971;
+wyswietl(380.36821943072107);
+wyswietl(270.5736177559076);
+logiczna O = prawda;
+w = 986.191206279894;
+wyswietl(880.1849487188166);
+dla(calkowita S = 658; S < 1593; S = S + 143)
+{
+X = 747.4319231032415;
+wyswietl(t);
+t = 541.8111094462618;
+wprowadz(Z);
+wprowadz(F);
+calkowita I = 367;
+K = 587.8508939004215;
+dla(calkowita l = 336; l < 1155; l = l + 616)
+{
+}
+wyswietl(554.5682093634166);
+b = 133.88423566288398;
+U = 356.0124225858937;
+jezeli(357.98896537806723 != 312.9465852706893)
+{
+}
+}
+jezeli(916.1928183392585 != 785.3165885952787)
+{
+}
+dla(calkowita X = 7; X < 797; X = X + 65)
+{
+}
+wprowadz(l);
+wprowadz(U);
+i = 863.4931347325252;
+Q = 678.7534179125272;
+wyswietl(R);
+wprowadz(Q);
+wprowadz(Z);
+jezeli(682.2412894943899 == 660.636664286518)
+{
+}
+logiczna Z = prawda;
+logiczna V = falsz;
+jezeli(T <= R)
+{
+wprowadz(t);
+U = 1.539485740964075;
+jezeli(O < w)
+{
+jezeli(E < T)
 {
 }
 }
